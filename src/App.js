@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import NewExpense from "./components/NewExpense/NewExpense";
 import Expenses from "./components/Expenses/Expenses";
-import Chart from "./components/Chart/Chart";
 
 const initExpenses = [
-  { id: 1, date: new Date(2023, 3, 31), title: "Insurance", amount: 132.12 },
+  { id: 1, date: new Date(2023, 3, 31), title: "Insurance", amount: 1000 },
   { id: 2, date: new Date(2023, 5, 1), title: "Birds", amount: 1232.82 },
   { id: 3, date: new Date(2023, 5, 12), title: "Health", amount: 1882.22 },
   { id: 4, date: new Date(2022, 8, 12), title: "Juno", amount: 382.22 },
@@ -12,7 +11,6 @@ const initExpenses = [
 
 const App = () => {
   const [expenses, setExpenses] = useState(initExpenses);
-  const [dataPoints, setDataPoints] = useState([]);
 
   const calculateNextId = () => {
     let nextId = 1;

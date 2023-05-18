@@ -1,6 +1,5 @@
 import React from "react";
 import Chart from "../Chart/Chart";
-import RoundCurrency from "../Utils/RoundCurrency";
 
 const ExpensesChart = (props) => {
   const chartDataPoints = [
@@ -18,29 +17,16 @@ const ExpensesChart = (props) => {
     { label: "Dec", value: 0 },
   ];
   for (const expense of props.items) {
-    const expenseMonth = expense.date.toLocaleString("en-US", { month: "short" });
+    const expenseMonth = expense.date.getMonth(); // starting at 0 => January => 0
     console.log("expenseMonth " + expenseMonth);
-    console.log("expense.amount " + RoundCurrency(expense.amount));
-    // update month in array
-    for (const dataPoint of chartDataPoints) {
-      if (dataPoint.label === expenseMonth) {
-        dataPoint.value += RoundCurrency(expense.amount);
-        console.log("dataPoint.label " + dataPoint.label + " dataPoint.value " + dataPoint.value);
-      }
-    }
-    //        chartDataPoints[expenseMonth].value += expense.amount;
+    chartDataPoints[expenseMonth].value += Number(expense.amount);
+    console.log("expense.amount " + Number(expense.amount));
   }
-  // calculate max value
-  let maxValue = 0;
-  for (const dataPoint of chartDataPoints) {
-    console.log("dataPoint.label " + dataPoint.label + " dataPoint.value " + dataPoint.value);
-    if (RoundCurrency(dataPoint.value) > RoundCurrency(maxValue)) {
-      maxValue = Number(dataPoint.value);
-    }
-  }
-  console.log("MaxValue " + maxValue);
 
-  return <Chart dataPoints={chartDataPoints} maxValue={maxValue} />;
+  console.log("chartDataPoints ");
+  console.log(chartDataPoints);
+
+  return <Chart dataPoints={chartDataPoints} />;
 };
 
 export default ExpensesChart;
