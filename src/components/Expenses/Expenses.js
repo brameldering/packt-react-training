@@ -7,6 +7,7 @@ import ExpensesList from "./ExpensesList";
 import ExpensesChart from "./ExpensesChart";
 
 export default function Expenses(props) {
+  console.log("Expenses");
   const [filteredYear, setFilteredYear] = useState("2022");
 
   const filterChangeHandler = (selectedYear) => {
